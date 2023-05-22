@@ -251,7 +251,7 @@ abstract class BaseTree : Timber.Tree() {
 
     private val stackTrace = ThreadLocal<StackData>()
     private fun getStackTrace(): StackData {
-        val trace = stackTrace.get()!!
+        val trace = stackTrace.get() ?: StackData(Thread.currentThread().stackTrace.toList(), 0)
         stackTrace.remove()
         return trace
     }
